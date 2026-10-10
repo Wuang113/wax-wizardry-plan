@@ -1,24 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight, ArrowUpRight, Leaf, Fingerprint, Globe, Flame } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { chapters } from '@/lib/plan-content';
+import heroImage from '@/assets/candles-hero.jpg';
+export const Route = createFileRoute('/')({
+  head: () => ({meta:[{title:'Mộc — Kế hoạch kinh doanh nến thơm thủ công'},{name:'description',content:'Đề án thương mại điện tử nến thơm thủ công: mô hình kinh doanh, thị trường, tiếp thị, vận hành, nhân sự, tài chính và SWOT.'},{property:'og:title',content:'Mộc — Kế hoạch kinh doanh nến thơm thủ công'},{property:'og:description',content:'Từ cảm hứng thủ công đến một mô hình kinh doanh thương mại điện tử bền vững.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
   component: Index,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+ return <main><section className="hero"><img src={heroImage} alt="Nến thơm thủ công trong hũ thủy tinh bên cành lá và hoa" width={1920} height={1088} className="hero-image"/><div className="hero-shade"/><div className="hero-inner content-width"><div className="hero-copy"><div className="hero-kicker"><span/> BẢN KẾ HOẠCH KINH DOANH THƯƠNG MẠI ĐIỆN TỬ</div><h1>Nến thơm<br/>thủ công<span className="hero-period">.</span></h1><p className="hero-english">HANDMADE SCENTED CANDLES</p><p className="hero-description">Từ một ngọn nến nhỏ, thắp lên một ý tưởng lớn.<br/>Hành trình xây dựng thương hiệu nến thơm thủ công<br className="desktop-break"/> với giá trị tự nhiên và tư duy kinh doanh bền vững.</p><Button asChild variant="hero" size="lg"><Link to="/ke-hoach/$chapter" params={{chapter:'doanh-nghiep'}}>Khám phá kế hoạch <ArrowUpRight/></Link></Button></div><div className="hero-bottom"><span>ĐỀ ÁN KINH DOANH <span className="hero-divider">/</span> 2026</span><span className="hero-bottom-right"><Flame size={15}/> Thủ công từ tâm. Lan tỏa từ hương.</span></div></div></section>
+ <section className="values-strip"><div className="content-width values-inner"><div><Leaf/><span>Nguyên liệu chọn lọc</span></div><div><Fingerprint/><span>Dấu ấn thủ công</span></div><div><Globe/><span>Kinh doanh đa kênh</span></div><span className="values-tag">Một ý tưởng. Một hành trình.</span></div></section>
+ <section className="overview-section content-width"><div className="overview-heading"><div><span className="eyebrow">TỔNG QUAN DỰ ÁN</span><h2>Một kế hoạch toàn diện.<br/><span>Một thương hiệu có bản sắc.</span></h2></div><p>Từ định vị thương hiệu đến quản trị tài chính,<br className="desktop-break"/> từng bước được kết nối để xây dựng một<br className="desktop-break"/> mô hình kinh doanh có nền tảng vững chắc.</p></div><div className="plan-grid">{chapters.slice(0,6).map(chapter => {const Icon = chapter.icon; return <Link key={chapter.id} to="/ke-hoach/$chapter" params={{chapter:chapter.id}} className="plan-card"><div className="plan-card-top"><span className="card-icon"><Icon size={23} strokeWidth={1.5}/></span><span className="card-number">{chapter.number}</span></div><h3>{chapter.title}</h3><p>{chapter.description}</p><span className="card-link">Xem chi tiết <ArrowUpRight size={16}/></span></Link>;})}</div><Link to="/ke-hoach/$chapter" params={{chapter:'swot'}} className="swot-banner"><span className="swot-symbol">S<span>W</span><span>O</span>T</span><div><span className="eyebrow">GÓC NHÌN CHIẾN LƯỢC</span><h3>Ma trận SWOT</h3><p>Hiểu rõ nội lực. Nắm bắt cơ hội. Chủ động trước thách thức.</p></div><span className="swot-banner-link">Khám phá ma trận <ArrowRight size={19}/></span></Link><p className="reference-note">Nội dung là phương án đề xuất để tham khảo; dữ liệu thị trường cần kiểm chứng và số liệu tài chính là giả định minh họa.</p></section></main>;
 }
