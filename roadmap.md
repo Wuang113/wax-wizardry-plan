@@ -1,4 +1,4 @@
 # Roadmap
-- [ ] Create Vietnamese business-plan overview and seven content pages.
-- [ ] Add financial scenario calculator and SWOT matrix.
-- [ ] Verify navigation and rendering.
+- [x] Create Vietnamese business-plan overview and seven content pages.
+- [x] Add financial scenario calculator and SWOT matrix.
+- [x] Verify navigation and rendering.
